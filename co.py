@@ -54,9 +54,9 @@ class PBIL:
   
   def optimize(self, T, population_size, E):
 
-    best_inds = np.zeros((self.T, self.N))
+    best_inds = np.zeros((T, self.N))
 
-    best_inds_E = np.zeros(self.T)
+    best_inds_E = np.zeros(T)
 
     for t in range(T):
 
