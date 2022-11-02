@@ -104,19 +104,25 @@ class PBIL:
 
       neq = best_ind != worst_ind
 
+      self.P = self.P * (1 - (self.nlr * neq)) + best_ind * self.nlr * neq
+
+      #for i in range(self.N):
+
+        #if neq[i]:
+
+          #self.P[i] = self.P[i] * (1 - self.nlr) + best_ind[i] * self.nlr
+        
+        #if mut[i]:
+
+          #shift = np.random.choice((0, 1))
+
+          #self.P[i] = self.P[i] * (1 - self.mut_shift) + shift * self.mut_shift
+
       mut = (np.random.uniform(0, 1, self.N) <= self.mut_prob).astype(np.int)
 
-      for i in range(self.N):
+      shift = (np.random.uniform(0, 1) >= 0.5).astype(np.int) * self.mut_shift
 
-        if neq[i]:
-
-          self.P[i] = self.P[i] * (1 - self.nlr) + best_ind[i] * self.nlr
-        
-        if mut[i]:
-
-          shift = np.random.choice((0, 1))
-
-          self.P[i] = self.P[i] * (1 - self.mut_shift) + shift * self.mut_shift
+      self.P = self.P * (1 - (shift * mut)) + shift * mut
       
       best_inds[t] = best_ind
 
