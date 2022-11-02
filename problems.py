@@ -12,11 +12,11 @@ class TSP:
 
         self.tour_string_length = (C * self.idx_length).astype(np.int)
 
-        self.roads = np.random.uniform(low=0, high=1, size=(C,C))
+        roads = np.random.uniform(low=0, high=1, size=(C,C))
 
         diag = 1 - np.diag(np.ones(C))
 
-        roads = roads * roads.T * diag
+        self.roads = roads * roads.T * diag
     
     def tour_length(self, tour_string):
 
@@ -30,7 +30,7 @@ class TSP:
         
         order = np.argsort(indexes)
 
-        tour_length = sum([roads[order[i-1], order[i]] for i in range(1, self.C)])
+        tour_length = sum([self.roads[order[i-1], order[i]] for i in range(1, self.C)])
 
         return 1/tour_length
 
