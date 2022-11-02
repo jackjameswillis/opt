@@ -50,7 +50,7 @@ class PBIL:
 
     self.lr = lr
 
-    self.nlr
+    self.nlr = nlr
   
   def optimize(self, T, population_size, E):
 
