@@ -46,7 +46,7 @@ class hillclimber:
 
     for r in range(R):
 
-      runs[r] = self.climb(np.random.choice((0, 1), self.N), T, R)
+      runs[r] = self.climb(np.random.choice((0, 1), self.N), T, E)
     
     return runs
 
