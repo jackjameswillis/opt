@@ -1,0 +1,41 @@
+import numpy as np
+
+class hillclimber:
+
+  def __init__(self, N):
+
+    self.N = N
+  
+  def climb(self, V, T, E):
+
+    Vs = np.zeros((T, self.N))
+
+    Es = np.zeros(T)
+
+    VE = E(V)
+
+    Vs[0] = V
+
+    Es[0] = VE
+
+    for t in range(1, T):
+
+      V_ = V.copy()
+
+      i = np.random.randint(0, self.N)
+
+      V_[i] = 1 - V_[i]
+
+      V_E = E(V_)
+
+      if V_E <= VE:
+
+        V = V_
+
+        VE = V_E
+      
+      Vs[t] = V
+
+      Es[t] = VE
+
+    return (Vs, Es)
