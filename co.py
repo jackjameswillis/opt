@@ -42,7 +42,7 @@ class hillclimber:
 
 class PBIL:
 
-  def __init__(self, N, lr, nlr):
+  def __init__(self, N, lr, nlr, mut_prob, mut_shift):
 
     self.P = np.ones(N) - 0.5
 
@@ -51,6 +51,10 @@ class PBIL:
     self.lr = lr
 
     self.nlr = nlr
+
+    self.mut_prob = mut_prob
+
+    self.mut_shift = mut_shift
   
   def optimize(self, T, population_size, E):
 
@@ -90,11 +94,19 @@ class PBIL:
 
       neq = best_ind != worst_ind
 
+      mut = (np.random.uniform(0, 1, self.N) <= self.mut_prob).astype(np.int)
+
       for i in range(self.N):
 
         if neq[i]:
 
           self.P[i] = self.P[i] * (1 - self.nlr) + best_ind[i] * self.nlr
+        
+        if mut[i]:
+
+          shift = np.random.choice((0, 1))
+
+          self.P[i] = self.P[i] * (1 - self.mut_shift) + shift * self.mut_shift
       
       best_inds[t] = best_ind
 
