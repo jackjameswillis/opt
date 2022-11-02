@@ -86,7 +86,7 @@ class PBIL:
 
           worst_ind_E = ind_E
         
-      P = P * (1 - self.lr) + best_ind * self.lr
+      self.P = self.P * (1 - self.lr) + best_ind * self.lr
 
       neq = best_ind != worst_ind
 
@@ -94,6 +94,6 @@ class PBIL:
 
         if neq[i]:
 
-          P[i] = P[i] * (1 - self.nlr) + best_ind[i] * self.nlr
+          self.P[i] = self.P[i] * (1 - self.nlr) + best_ind[i] * self.nlr
 
     return (best_inds, best_inds_E)
