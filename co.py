@@ -95,5 +95,9 @@ class PBIL:
         if neq[i]:
 
           self.P[i] = self.P[i] * (1 - self.nlr) + best_ind[i] * self.nlr
+      
+      best_inds[t] = best_ind
+
+      best_inds_E[t] = best_ind_E
 
     return (best_inds, best_inds_E)
