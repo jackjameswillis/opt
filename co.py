@@ -106,18 +106,6 @@ class PBIL:
 
       self.P = self.P * (1 - (self.nlr * neq)) + best_ind * self.nlr * neq
 
-      #for i in range(self.N):
-
-        #if neq[i]:
-
-          #self.P[i] = self.P[i] * (1 - self.nlr) + best_ind[i] * self.nlr
-        
-        #if mut[i]:
-
-          #shift = np.random.choice((0, 1))
-
-          #self.P[i] = self.P[i] * (1 - self.mut_shift) + shift * self.mut_shift
-
       mut = (np.random.uniform(0, 1, self.N) <= self.mut_prob).astype(np.int)
 
       shift = (np.random.uniform(0, 1) >= 0.5).astype(np.int) * self.mut_shift
@@ -129,3 +117,13 @@ class PBIL:
       best_inds_E[t] = best_ind_E
 
     return (best_inds, best_inds_E)
+
+class rHNS:
+
+  def __init__(self, N, lr, W):
+
+    self.N = N
+
+    self.lr = lr
+
+    self.W = W
