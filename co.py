@@ -40,13 +40,13 @@ class hillclimber:
 
     return (Vs, Es)
 
-  def multiple_restart(self, T, E, R):
+  def multiple_restart(self, T, R, E):
 
     runs = {}
 
     for r in range(R):
 
-      runs[r] = self.climb(np.random.choice((0, 1), self.N))
+      runs[r] = self.climb(np.random.choice((0, 1), self.N), T, R)
     
     return runs
 
