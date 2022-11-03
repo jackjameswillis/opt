@@ -42,7 +42,7 @@ class MDKP:
 
         self.N = N
 
-        self.sizes = np.random.randint(1, np.sum(S), [N] + S)
+        self.sizes = np.random.randint(1, np.sum(S), [N] + self.S)
 
         self.masses = np.random.randint(1, N, N)
     
