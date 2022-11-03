@@ -38,11 +38,11 @@ class MDKP:
 
     def __init__(self, S, N):
 
-        self.S = S
+        self.S = list(S)
 
         self.N = N
 
-        self.sizes = np.random.randint(1, np.sum(S), (N, S))
+        self.sizes = np.random.randint(1, np.sum(S), [N] + S)
 
         self.masses = np.random.randint(1, N, N)
     
