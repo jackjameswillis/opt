@@ -34,3 +34,26 @@ class TSP:
 
         return 1/tour_length
 
+class MDKP:
+
+    def __init__(self, S, N):
+
+        self.S = S
+
+        self.N = N
+
+        self.sizes = np.random.randint(1, np.sum(S), (N, S))
+
+        self.masses = np.random.randint(1, N, N)
+    
+    def fill_knapsack(self, V):
+
+        filled_sizes = np.sum(self.sizes * V, axis=1)
+
+        filled_mass = np.sum(self.masses * V)
+
+        if (filled_sizes > self.S).any():
+
+            return 0
+        
+        return filled_mass
