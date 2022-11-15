@@ -60,9 +60,9 @@ class MDKP:
 
         while (filled <= S_a).all() and i < self.N:
 
-            filled += self.sizes[i]
+            filled += self.sizes[i] * V[i]
 
-            mass += self.masses[i]
+            mass += self.masses[i] * V[i]
 
             i += 1
 
