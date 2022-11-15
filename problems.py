@@ -38,17 +38,19 @@ class MDKP:
 
     def __init__(self, S, N):
 
+        self.D = len(S)
+
         self.S = list(S)
 
         self.N = N
 
-        self.sizes = np.random.randint(1, np.sum(S), [N] + self.S)
+        self.sizes = np.random.randint(1, np.max(S), [N] + [self.D])
 
         self.masses = np.random.randint(1, N, N)
     
     def fill_knapsack(self, V):
 
-        filled = np.zeros(len(self.S))
+        filled = np.zeros(self.D)
 
         S_a = np.array(self.S)
 
