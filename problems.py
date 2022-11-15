@@ -48,12 +48,24 @@ class MDKP:
     
     def fill_knapsack(self, V):
 
-        filled_sizes = np.sum(self.sizes * V, axis=1)
+        filled = np.zeros(len(self.S))
 
-        filled_mass = np.sum(self.masses * V)
+        S_a = np.array(self.S)
 
-        if (filled_sizes > self.S).any():
+        mass = 0
+
+        i = 0
+
+        while (filled <= S_a).all() and i < self.N:
+
+            filled += self.sizes[i]
+
+            mass += self.masses[i]
+
+            i += 1
+
+        if not (filled <= S_a).all():
 
             return 0
         
-        return filled_mass
+        return mass
