@@ -44,7 +44,7 @@ class MDKP:
 
         self.N = N
 
-        self.sizes = np.random.randint(1, np.max(S), [N] + [self.D])
+        self.sizes = np.random.randint(1, int(np.max(S)/N), [N] + [self.D])
 
         self.masses = np.random.randint(1, N, N)
     
