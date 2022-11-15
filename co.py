@@ -108,7 +108,7 @@ class PBIL:
 
       mut = (np.random.uniform(0, 1, self.N) <= self.mut_prob).astype(np.int)
 
-      shift = (np.random.uniform(0, 1) >= 0.5).astype(np.int) * self.mut_shift
+      shift = (np.random.uniform(0, 1, self.N) >= 0.5).astype(np.int) * self.mut_shift
 
       self.P = self.P * (1 - (shift * mut)) + shift * mut
       
