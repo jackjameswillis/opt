@@ -60,8 +60,6 @@ class MDKP:
 
         while (filled <= S_a).all() and i < self.N:
 
-            print(f'{i}:{(filled <= S_a).all()}:{mass}')
-
             filled += self.sizes[i]
 
             mass += self.masses[i]
