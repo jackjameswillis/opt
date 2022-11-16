@@ -120,10 +120,66 @@ class PBIL:
 
 class rHNS:
 
-  def __init__(self, N, lr, W):
+  def __init__(self, N, lr):
 
     self.N = N
 
     self.lr = lr
 
-    self.W = W
+    self.W = np.zeros((N, N))
+
+    self.diag = 1 - np.diag(np.ones(N))
+
+  def E(self, V):
+
+    return -((V.T @ self.W) @ V) / 2
+  
+  def hebb(self, V):
+
+    self.W += (V @ V.T) * self.lr
+
+  def relax(self, V, T, f):
+
+    Vs = np.zeros((T, self.N))
+
+    Es = np.zeros(T)
+
+    i_t = np.random.randint(0, self.N, T)
+
+    VE = self.E(V) + f(V)
+
+    Vs[0] = V
+
+    Es[0] = VE
+
+    for t in range(T):
+
+      V_ = V.copy()
+
+      V_[i_t[t]] = V_[i_t[t]] * -1
+
+      V_E = self.E(V_) + f(V_)
+
+      if V_E <= VE:
+
+        V = V_
+
+        VE = V_E
+        
+      Vs[t] = V
+
+      Es[t] = VE
+    
+    self.hebb(V)
+    
+    return (Vs, Es)
+  
+  def multiple_relax(self, T, R, f):
+
+    runs = {}
+
+    for r in range(R):
+
+      runs[r] = self.relax(np.random.choice((-1, 1), self.N), T, f)
+    
+    return runs
