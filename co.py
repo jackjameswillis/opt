@@ -168,7 +168,7 @@ class rHNS:
         
       Vs[t] = V
 
-      Es[t] = VE
+      Es[t] = f(VE)
     
     self.hebb(V)
     
