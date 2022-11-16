@@ -56,20 +56,18 @@ class MDKP:
 
         S_a = np.array(self.S)
 
+        chosen_sizes = (V * self.sizes.T)
+
+        chosen_masses = V * self.masses
+
         mass = 0
 
-        i = 0
+        for d in range(self.D):
 
-        while (filled <= S_a).all() and i < self.N:
-
-            filled += self.sizes[i] * V[i]
-
-            mass += self.masses[i] * V[i]
-
-            i += 1
+            filled[d] = np.sum(chosen_sizes[d])
 
         if not (filled <= S_a).all():
 
             return 0
         
-        return mass
+        return np.sum(chosen_masses)
