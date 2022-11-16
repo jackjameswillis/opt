@@ -56,7 +56,7 @@ class hillclimber:
 
     for r in range(R):
 
-      runs[r] = self.climb(constant, self.N), T, E)
+      runs[r] = self.climb(constant, T, E)
     
     return runs
 
@@ -206,6 +206,6 @@ class rHNS:
 
     for r in range(R):
 
-      runs[r] = self.relax(constant, self.N), T, f)
+      runs[r] = self.relax(constant, T, f)
     
     return runs
