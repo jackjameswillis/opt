@@ -50,6 +50,16 @@ class hillclimber:
     
     return runs
 
+  def multiple_restart_constant(self, T, R, E, constant):
+
+    runs = {}
+
+    for r in range(R):
+
+      runs[r] = self.climb(constant, self.N), T, E)
+    
+    return runs
+
 class PBIL:
 
   def __init__(self, N, lr, nlr, mut_prob, mut_shift):
