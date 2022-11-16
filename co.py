@@ -136,7 +136,11 @@ class rHNS:
   
   def hebb(self, V):
 
-    self.W += (V @ V.T) * self.lr
+    V = V[:, np.newaxis]
+
+    dW = (V @ V.T) * self.lr
+
+    self.W = (self.W + dW) * self.diag
 
   def relax(self, V, T, f):
 
