@@ -36,17 +36,19 @@ class TSP:
 
 class MDKP:
 
-    def __init__(self, S, N):
+    def __init__(self, L, D, N, a):
 
-        self.D = len(S)
-
-        self.S = list(S)
+        self.D = D
 
         self.N = N
 
-        self.sizes = np.random.randint(1, int(np.min(S))/2, [N] + [self.D])
+        self.a = a
+
+        self.sizes = np.random.randint(0, L, [N] + [self.D])
 
         self.masses = np.random.randint(1, N, N)
+
+        self.S = [(a * np.sum(self.sizes[:,i])).astype(np.int32) for i in range(D)]
     
     def fill_knapsack(self, V):
 
