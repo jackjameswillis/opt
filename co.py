@@ -132,6 +132,8 @@ class rHNS:
 
   def E(self, V):
 
+    V = V[:, np.newaxis]
+
     return -((V.T @ self.W) @ V) / 2
   
   def hebb(self, V):
