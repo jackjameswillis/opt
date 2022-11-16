@@ -156,7 +156,7 @@ class rHNS:
 
     Vs[0] = V
 
-    Es[0] = VE
+    Es[0] = f(V)
 
     for t in range(T):
 
