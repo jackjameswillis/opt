@@ -189,3 +189,13 @@ class rHNS:
       runs[r] = self.relax(np.random.choice((-1, 1), self.N), T, f)
     
     return runs
+
+  def multiple_relax_constant(self, T, R, f, constant):
+
+    runs = {}
+
+    for r in range(R):
+
+      runs[r] = self.relax(constant, self.N), T, f)
+    
+    return runs
