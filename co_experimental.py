@@ -44,7 +44,7 @@ class DeepHopfield:
 
         Vs[0] = V
 
-        Es[0] = VE
+        Es[0] = f(V[:self.N])
 
         for t in range(T):
 
@@ -52,7 +52,7 @@ class DeepHopfield:
 
             V_[i_t[t]] = V_[i_t[t]] * -1
 
-            V_E = self.E(V) + f(V[:self.N])
+            V_E = self.E(V) + f(V_[:self.N])
 
             if V_E <= VE:
 
