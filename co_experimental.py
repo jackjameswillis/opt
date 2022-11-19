@@ -63,3 +63,23 @@ class DeepHopfield:
             Es[t] = VE
         
         self.hebb(V)
+    
+    def multiple_relax(self, T, R, f):
+
+        runs = {}
+
+        for r in range(R):
+
+            runs[r] = self.relax(np.random.choice((-1, 1), self.NH), T = T, f = f)
+        
+        return runs
+    
+    def multiple_relax_constant(self, constant, T, R, f):
+
+        runs = {}
+
+        for r in range(R):
+
+            runs[r] = self.relax(constant, T, f)
+        
+        return runs
