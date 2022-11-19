@@ -16,8 +16,6 @@ class DeepHopfield:
 
         self.W = (self.W @ self.W.T) * self.diag
 
-        print(self.W)
-
     def hebb(self, V):
 
         V = V[:, np.newaxis]
