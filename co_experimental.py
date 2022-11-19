@@ -65,6 +65,8 @@ class DeepHopfield:
             Es[t] = VE
         
         self.hebb(V)
+
+        return (Vs, Es)
     
     def multiple_relax(self, T, R, f):
 
