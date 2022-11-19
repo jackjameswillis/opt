@@ -10,6 +10,8 @@ class DeepHopfield:
 
         self.NH = N + H
 
+        self.lr = lr
+
         self.W = np.random.choice((0.0001, -0.0001), (self.NH, self.NH))
 
         self.diag = 1 - np.diag(np.ones(self.NH))
