@@ -62,7 +62,7 @@ class DeepHopfield:
             
             Vs[t] = V
 
-            Es[t] = f(V)
+            Es[t] = f(V[:self.N])
         
         self.hebb(V)
 
