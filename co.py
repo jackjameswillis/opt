@@ -62,9 +62,9 @@ class hillclimber:
 
 class PBIL:
 
-  def __init__(self, N, lr, nlr, mut_prob, mut_shift):
+  def __init__(self, N, lr, nlr, mut_prob, mut_shift, P = 0.5):
 
-    self.P = np.ones(N) - 0.5
+    self.P = np.zeros(N) + P
 
     self.N = N
 
