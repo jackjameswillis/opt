@@ -209,3 +209,41 @@ class rHNS:
       runs[r] = self.relax(constant, T, f)
     
     return runs
+
+class SimAnneal:
+
+  def __init__(self, N):
+
+    N = self.N
+
+  def anneal(self, temp, T, E, init_candidate, mut_prob):
+
+    candidates = np.zeros((T, self.N))
+
+    E = np.zeros(T)
+
+    candidate = init_candidate
+
+    candidate_E = E(candidate)
+
+    for t in range(T):
+
+      new_candidate = np.copy(candidate)
+
+      mutations = (np.random.uniform(0, 1, self.N) < mut_prob).astype(np.int)
+
+      new_candidate = (new_candidate + mutations) % 2
+
+      new_candidate_E = E(new_candidate)
+
+      diff_E = new_candidate_E - candidate_E
+
+      if (new_candidate_E >= candidate_E) or (np.random.uniform(0, 1) < np.exp(-diff_E/temp(t))):
+
+        candidate = new_candidate
+
+        candidate_E = new_candidate_E
+      
+      E[t] = candidate_E
+    
+    return (candidates, E)
