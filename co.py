@@ -214,7 +214,7 @@ class SimAnneal:
 
   def __init__(self, N):
 
-    N = self.N
+    self.N = N
 
   def anneal(self, temp, T, E, init_candidate, mut_prob):
 
