@@ -236,7 +236,7 @@ class SimAnneal:
 
       new_candidate_E = E(new_candidate)
 
-      diff_E = new_candidate_E - candidate_E
+      diff_E = candidate_E - new_candidate_E
 
       if (new_candidate_E >= candidate_E) or (np.random.uniform(0, 1) < np.exp((-diff_E)/temp(t))):
 
