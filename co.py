@@ -220,7 +220,7 @@ class SimAnneal:
 
     candidates = np.zeros((T, self.N))
 
-    E = np.zeros(T)
+    E_t = np.zeros(T)
 
     candidate = init_candidate
 
@@ -244,6 +244,8 @@ class SimAnneal:
 
         candidate_E = new_candidate_E
       
-      E[t] = candidate_E
+      candidates[t] = candidate
+
+      E_t[t] = candidate_E
     
     return (candidates, E)
