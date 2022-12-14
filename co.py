@@ -248,4 +248,4 @@ class SimAnneal:
 
       E_t[t] = candidate_E
     
-    return (candidates, E)
+    return (candidates, E_t)
