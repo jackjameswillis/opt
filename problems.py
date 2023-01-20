@@ -74,11 +74,23 @@ class MDKP:
 
 class HopE:
 
-    def __init__(self, W):
+    def __init__(self, N, sparsity):
+
+        self.N = N
+
+        W = np.random.uniform(-1, 1, (N, N))
+
+        W = W @ W.T
+
+        diag = 1 - np.diag(np.ones(N))
+
+        topology = (np.random.uniform(0, 1, (N, N)) > sparsity) * diag
+
+        topology = (topology @ topology.T) < 1
+
+        W = W * topology
 
         self.W = W
-
-        self.N = W.shape[0]
 
     def E(self, V):
 
