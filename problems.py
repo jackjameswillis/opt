@@ -71,3 +71,16 @@ class MDKP:
             return 0
         
         return np.sum(chosen_masses)
+
+class HopE:
+
+    def __init__(self, W):
+
+        self.W = W
+
+        self.N = W.shape[0]
+
+    def E(self, V):
+
+        return ((self.W @ V.T) @ V) / 2
+      
