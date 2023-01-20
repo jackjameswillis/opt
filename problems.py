@@ -82,5 +82,5 @@ class HopE:
 
     def E(self, V):
 
-        return ((self.W @ V.T) @ V) / 2
+        return -((V.T @ self.W) @ V) / 2
       
