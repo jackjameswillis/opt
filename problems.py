@@ -86,7 +86,7 @@ class HopE:
 
         topology = (np.random.uniform(0, 1, (N, N)) > sparsity) * diag
 
-        topology = (topology @ topology.T) < 1
+        topology = np.tril(topology) + np.tril(topology).T
 
         W = W * topology
 
