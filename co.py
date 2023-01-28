@@ -1,4 +1,5 @@
 import numpy as np
+from numba import jit
 
 class hillclimber:
 
@@ -146,6 +147,7 @@ class rHNS:
 
     return -((V.T @ self.W) @ V) / 2
   
+  @jit(nopython=True)
   def hebb(self, V):
 
     V = V[:, np.newaxis]
