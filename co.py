@@ -141,6 +141,7 @@ class rHNS:
 
     self.diag = 1 - np.diag(np.ones(N))
 
+  @jit
   def E(self, V):
 
     V = V[:, np.newaxis]
