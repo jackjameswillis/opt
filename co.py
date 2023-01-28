@@ -141,14 +141,14 @@ class rHNS:
 
     self.diag = 1 - np.diag(np.ones(N))
 
-  @jit
+  @jit(signature="float64")
   def E(self, V):
 
     V = V[:, np.newaxis]
 
     return -((V.T @ self.W) @ V) / 2
   
-  @jit
+  @jit(signature="float64")
   def hebb(self, V):
 
     V = V[:, np.newaxis]
