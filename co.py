@@ -1,5 +1,6 @@
 import numpy as np
 from numba import jit
+from functools import partial
 
 class hillclimber:
 
@@ -141,14 +142,14 @@ class rHNS:
 
     self.diag = 1 - np.diag(np.ones(N))
 
-  @jit('f8(f8[:])')
+  @partial(jit, static_argnums=(0,))
   def E(self, V):
 
     V = V[:, np.newaxis]
 
     return -((V.T @ self.W) @ V) / 2
   
-  @jit('f8(f8[:])')
+  @partial(jit, static_argnums=(0,))
   def hebb(self, V):
 
     V = V[:, np.newaxis]
