@@ -74,23 +74,29 @@ class MDKP:
 
 class HopE:
 
-    def __init__(self, N, sparsity):
+    def __init__(self, N, connectivity, connection_noise=0):
 
         self.N = N
 
         W = np.random.uniform(-1, 1, (N, N))
 
+        cn = np.random.uniform(connection_noise, -connection_noise, (N, N))
+
+        cn = np.zeros((N, N)) + np.tril(cn) + np.tril(cn).T
+
         W = W @ W.T
 
         diag = 1 - np.diag(np.ones(N))
 
-        topology = (np.random.uniform(0, 1, (N, N)) > sparsity) * diag
+        cn = cn * diag
+
+        topology = (np.random.uniform(0, 1, (N, N)) > connectivity) * diag
 
         topology = np.tril(topology) + np.tril(topology).T
 
         W = W * topology
 
-        self.W = W
+        self.W = W + cn
 
     def E(self, V):
 
