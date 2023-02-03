@@ -131,7 +131,6 @@ class PBIL:
 
     return (best_inds, best_inds_E)
 
-@jitclass([('N', int32), ('lr', float64), ('W', float64[:]), ('diag', int32)])
 class rHNS:
 
   def __init__(self, N, lr):
@@ -150,9 +149,12 @@ class rHNS:
 
     return -((V.T @ self.W) @ V) / 2
   
+  @jit(nopython=True)
   def hebb(self, V):
 
-    V = V[:, np.newaxis]
+    #V = V[:, np.newaxis]
+
+    V = np.expand_dims(V, axis=0)
 
     dW = (V @ V.T) * self.lr
 
