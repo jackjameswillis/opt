@@ -131,7 +131,7 @@ class PBIL:
 
     return (best_inds, best_inds_E)
 
-@jitclass([('N', int32), ('lr', float32), ('W', float32[:])])
+@jitclass([('N', int32), ('lr', float32), ('W', float32[:]), ('diag', int32)])
 class rHNS:
 
   def __init__(self, N, lr):
