@@ -1,6 +1,7 @@
 import numpy as np
-from numba import jit
+from numba import jit, int32, float32
 from functools import partial
+from numba.experimental import jitclass
 
 class hillclimber:
 
@@ -130,6 +131,7 @@ class PBIL:
 
     return (best_inds, best_inds_E)
 
+@jitclass([('N', int32), ('lr', float32), ('W', float32[:])])
 class rHNS:
 
   def __init__(self, N, lr):
