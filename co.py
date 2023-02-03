@@ -149,7 +149,7 @@ class rHNS:
 
     return -((V.T @ self.W) @ V) / 2
   
-  @jit(nopython=True, [('V', float64[:])])
+  @jit([('V', float64[:])], nopython=True)
   def hebb(self, V):
 
     #V = V[:, np.newaxis]
