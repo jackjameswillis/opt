@@ -1,5 +1,5 @@
 import numpy as np
-from numba import jit, int32, float32
+from numba import jit, int32, float64
 from functools import partial
 from numba.experimental import jitclass
 
@@ -131,7 +131,7 @@ class PBIL:
 
     return (best_inds, best_inds_E)
 
-@jitclass([('N', int32), ('lr', float32), ('W', float32[:]), ('diag', int32)])
+@jitclass([('N', int32), ('lr', float64), ('W', float64[:]), ('diag', int32)])
 class rHNS:
 
   def __init__(self, N, lr):
