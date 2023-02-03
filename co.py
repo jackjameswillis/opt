@@ -1,7 +1,6 @@
 import numpy as np
 from numba import jit, int32, float64
 from functools import partial
-from numba.experimental import jitclass
 
 class hillclimber:
 
@@ -149,7 +148,6 @@ class rHNS:
 
     return -((V.T @ self.W) @ V) / 2
   
-  @jit(float64[:, :](float64[:]), nopython=True)
   def hebb(self, V):
 
     #V = V[:, np.newaxis]
