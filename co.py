@@ -150,9 +150,7 @@ class rHNS:
   
   def hebb(self, V):
 
-    #V = V[:, np.newaxis]
-
-    V = np.expand_dims(V, axis=0)
+    V = V[:, np.newaxis]
 
     dW = (V @ V.T) * self.lr
 
