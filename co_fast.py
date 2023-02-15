@@ -42,6 +42,30 @@ class hopfield(object):
 
         return E(V, self.W)
     
+    def update(self, V, i):
+
+        return update(V, self.W, i)
+    
+    def relax(self, V, T):
+
+        V_t = np.zeros((T, self.N))
+
+        V_t[0] = V
+
+        E_t = np.zeros(T)
+
+        i_t = np.random.randint(0, self.N, T)
+
+        for t in np.arange(1, T):
+
+            V_t[t] = V_t[t-1]
+
+            V_t[t, i_t[t]] = self.update(V_t[t], i_t[t])
+
+            E_t[t] = self.E(V_t[t])
+
+        return (V_t, E_t)
+    
 '''==============================================
 Multiple-Dimensional Knapsack Problem (mdkp)
 =============================================='''
