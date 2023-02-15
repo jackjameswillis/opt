@@ -25,6 +25,26 @@ def E(V, W):
 
     return -((V.T @ W) @ V) / 2
 
+def relax(V, W, T, N):
+
+    V_t = np.zeros((T, N))
+
+    V_t[0] = V
+
+    E_t = np.zeros(T)
+
+    i_t = np.random.randint(0, N, T)
+
+    for t in np.arange(1, T):
+
+        V_t[t] = V_t[t-1]
+
+        V_t[t, i_t[t]] = update(V_t[t], W, i_t[t])
+
+        E_t[t] = E(V_t[t], W)
+
+    return (V_t, E_t)
+
 # Types must be given for C
 hopfield_decorators = [('N', int32),
                         ('W', double[:,:])]
@@ -37,27 +57,11 @@ class hopfield(object):
 
         self.N = N
 
-        self.W = W 
+        self.W = W
     
     def relax(self, V, T):
 
-        V_t = np.zeros((T, self.N))
-
-        V_t[0] = V
-
-        E_t = np.zeros(T)
-
-        i_t = np.random.randint(0, self.N, T)
-
-        for t in np.arange(1, T):
-
-            V_t[t] = V_t[t-1]
-
-            V_t[t, i_t[t]] = update(V_t[t], self.W, i_t[t])
-
-            E_t[t] = E(V_t[t], self.W)
-
-        return (V_t, E_t)
+        return relax(V, self.W, T, self.N)
     
     def multiple_relax(self, V_r, T):
 
