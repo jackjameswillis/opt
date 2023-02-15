@@ -74,7 +74,7 @@ class hopfield(object):
 
         for r in np.arange(len(V_r)):
 
-            V_r_t[r], E_r_t = self.relax(V_r[r], T)
+            V_r_t[r], E_r_t[r] = self.relax(V_r[r], T)
         
         return (V_r_t, E_r_t)
     
