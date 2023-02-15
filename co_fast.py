@@ -66,6 +66,18 @@ class hopfield(object):
 
         return (V_t, E_t)
     
+    def multiple_relax(self, V_r, T):
+
+        V_r_t = np.zeros((len(V_r), T, self.N))
+
+        E_r_t = np.zeros((len(V_r), T))
+
+        for r in np.arange(len(V_r)):
+
+            V_r_t[r], E_r_t = self.relax(V_r[r], T)
+        
+        return (V_r_t, E_r_t)
+    
 '''==============================================
 Multiple-Dimensional Knapsack Problem (mdkp)
 =============================================='''
