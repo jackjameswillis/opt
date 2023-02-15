@@ -29,7 +29,7 @@ hopfield_decorators = [('N', int32),
                         ('W', double[:,:])]
 
 # Types are given so that class code can be compiled in C
-@jitclass(hopfield_decorators, cache=True)
+@jitclass(hopfield_decorators)
 class hopfield(object):
 
     def __init__(self, N, W):
@@ -85,7 +85,7 @@ Multiple-Dimensional Knapsack Problem (mdkp)
 mdkp_decorators = [('N', int32)]
 
 # Types are given so that class code can be compiled in C
-@jitclass(mdkp_decorators, cache=True)
+@jitclass(mdkp_decorators)
 class mdkp(object):
 
     def __init__(self, N):
