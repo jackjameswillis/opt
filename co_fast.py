@@ -37,18 +37,7 @@ class hopfield(object):
 
         self.N = N
 
-        self.W = W
-    
-    @staticmethod
-    def E(self, V):
-
-        return E(V, self.W)
-    
-    @staticmethod
-    def update(self, V, i):
-
-        return update(V, self.W, i)
-    
+        self.W = W 
     
     def relax(self, V, T):
 
@@ -64,9 +53,9 @@ class hopfield(object):
 
             V_t[t] = V_t[t-1]
 
-            V_t[t, i_t[t]] = self.update(V_t[t], i_t[t])
+            V_t[t, i_t[t]] = update(V_t[t], self.W, i_t[t])
 
-            E_t[t] = self.E(V_t[t])
+            E_t[t] = E(V_t[t], self.W)
 
         return (V_t, E_t)
     
