@@ -14,9 +14,10 @@ hopfield
 
 # Types must be given for C
 # Reads return_type(given from V_type, W_type, i_type)
+s = (int32(int32[:], double[:,:], int32))
 
 # Update for individual units compiled to C
-@jit(nopython=True)
+@jit(s, nopython=True)
 def update(V, W, i):
 
     return np.sign(np.dot(V, W[i]))
