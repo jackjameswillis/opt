@@ -20,7 +20,7 @@ hopfield
 @jit(nopython=True)
 def update(V, W, i):
 
-    return np.sign(np.dot(V, W[i]))
+    return np.sign(V @ W[i])
 
 # Types must be given for C
 hopfield_decorators = [('N', int32),
