@@ -23,7 +23,7 @@ def update(V, W, i):
 
 # Types must be given for C
 hopfield_decorators = [('N', int32),
-                        'W', double[:,:]]
+                        ('W', double[:,:])]
 
 # Types are given so that class code can be compiled in C
 @jitclass(hopfield_decorators)
