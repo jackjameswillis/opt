@@ -13,13 +13,13 @@ hopfield
 =============================================='''
 
 # Update for individual units compiled to C
-@jit(nopython=True)
+@jit(nopython=True, cache=True)
 def update(V, W, i):
 
     return np.sign(V @ W[i])
 
 # State energy function compiled to C
-@jit(nopython=True)
+@jit(nopython=True, cache=True)
 def E(V, W):
 
     return -((V.T @ W) @ V) / 2
@@ -29,7 +29,7 @@ hopfield_decorators = [('N', int32),
                         ('W', double[:,:])]
 
 # Types are given so that class code can be compiled in C
-@jitclass(hopfield_decorators)
+@jitclass(hopfield_decorators, cache=True)
 class hopfield(object):
 
     def __init__(self, N, W):
@@ -85,7 +85,7 @@ Multiple-Dimensional Knapsack Problem (mdkp)
 mdkp_decorators = [('N', int32)]
 
 # Types are given so that class code can be compiled in C
-@jitclass(mdkp_decorators)
+@jitclass(mdkp_decorators, cache=True)
 class mdkp(object):
 
     def __init__(self, N):
