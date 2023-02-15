@@ -12,15 +12,17 @@ from numba.experimental import jitclass
 hopfield
 =============================================='''
 
-# Types must be given for C
-# Reads return_type(given from V_type, W_type, i_type)
-#s = (int32(double[:], double[:,:], int32))
-
 # Update for individual units compiled to C
 @jit(nopython=True)
 def update(V, W, i):
 
     return np.sign(V @ W[i])
+
+# State energy function compiled to C
+@jit(nopython=True)
+def E(V, W):
+
+    return -((V.T @ W) @ V) / 2
 
 # Types must be given for C
 hopfield_decorators = [('N', int32),
@@ -34,6 +36,11 @@ class hopfield(object):
 
         self.N = N
 
+        self.W = W
+    
+    def E(self, V):
+
+        return E(V, self.W)
     
 '''==============================================
 Multiple-Dimensional Knapsack Problem (mdkp)
