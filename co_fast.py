@@ -14,19 +14,19 @@ hopfield
 =============================================='''
 
 # Update for individual units compiled to C
-@jit(nopython=True, cache=True)
+@jit(nopython=True)
 def update(V, W, i):
 
     return np.sign(V @ W[i])
 
 # State energy function compiled to C
-@jit(nopython=True, cache=True)
+@jit(nopython=True)
 def E(V, W):
 
     return -((V.T @ W) @ V) / 2
 
 # network relaxation function compiled to C
-@jit(nopython=True, cache=True)
+@jit(nopython=True)
 def relax(V, W, T, N):
 
     V_t = np.zeros((T, N))
