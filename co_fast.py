@@ -1,40 +1,28 @@
+# C compilable maths
 import numpy as np
+
+# Makes lots of code C
 from numba import int32, float32
 from numba.experimental import jitclass
 
-algorithm_decorators = [('N', int32)]
-
-problem_decorators = [('N', int32)]
-
-@jitclass(algorithm_decorators)
-class algorithm(object):
-
-    def __init__(self, N):
-
-        self.N = N
-
-
+# Types must be given for C
 hopfield_decorators = [('N', int32)]
 
+# Types are given so that class code can be compiled in C
 @jitclass(hopfield_decorators)
-class hopfield(algorithm):
-
-    def __init__(self, N):
-
-        super().__init__(N)
-
-@jitclass(problem_decorators)
-class problem(object):
+class hopfield(object):
 
     def __init__(self, N):
 
         self.N = N
 
+# Types must be given for C
 mdkp_decorators = [('N', int32)]
 
+# Types are given so that class code can be compiled in C
 @jitclass(mdkp_decorators)
-class mdkp(problem):
+class mdkp(object):
 
     def __init__(self, N):
 
-        super().__init__(N)
+        self.N = N
