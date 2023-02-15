@@ -5,7 +5,7 @@ Imports
 import numpy as np
 
 # Makes lots of code C
-from numba import int32, float32, double, jit
+from numba import int32, double, jit
 from numba.experimental import jitclass
 
 '''==============================================
@@ -14,7 +14,6 @@ hopfield
 
 # Types must be given for C
 # Reads return_type(given from V_type, W_type, i_type)
-#update_signature = int32(int32[:], double[:,:], int32)
 
 # Update for individual units compiled to C
 @jit(nopython=True)
