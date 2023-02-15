@@ -2,6 +2,7 @@
 Imports
 =============================================='''
 # C compilable maths
+from os import stat
 import numpy as np
 
 # Makes lots of code C
@@ -38,13 +39,16 @@ class hopfield(object):
 
         self.W = W
     
+    @staticmethod
     def E(self, V):
 
         return E(V, self.W)
     
+    @staticmethod
     def update(self, V, i):
 
         return update(V, self.W, i)
+    
     
     def relax(self, V, T):
 
